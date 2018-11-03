@@ -44,7 +44,7 @@ class App extends Component {
         <div className='app-container'>
           <Header />
           <GameStatus />
-          <QuestionContainer />
+          <QuestionContainer questions={this.state.questions}/>
           <AnswerBank answers={this.state.answers}/>
         </div>
       )

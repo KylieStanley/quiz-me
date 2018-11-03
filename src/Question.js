@@ -5,9 +5,7 @@ import './styles/main.scss';
 export default class Question extends Component {
   render() {
     return (
-      <div>
-      <h2>This method is used to test the layout</h2>
-      </div>
+        <h2 className="current-question">{this.props.currentQuestion.question}</h2>
     );
   }
 }

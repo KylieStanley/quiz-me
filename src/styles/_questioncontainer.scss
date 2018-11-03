@@ -2,9 +2,24 @@
   align-items: center;
   background-color: #fff;
   border: 2px solid black;
-  display: flex;
+  border-radius: 10px 10px 0 0;
+  display: grid;
+  grid-template-rows: 60% 40%;
   height: 190px;
-  justify-content: center;
+
   margin: 0 auto;
   width: 95%;
+  text-align: center;
+}
+
+.carousel-btn {
+  border-radius: 30px;
+  font-size: 16px;
+  margin: 0 10px;
+  padding: 5px 15px;
+}
+
+i {
+  font-size: 15px;
+  padding: 5px;
 }

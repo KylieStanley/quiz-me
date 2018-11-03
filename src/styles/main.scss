@@ -1,5 +1,6 @@
 @import 'answerBank';
 @import 'choices';
+@import 'question';
 @import 'splash';
 @import 'header';
 @import 'gamestatus';
@@ -27,4 +28,5 @@ h3 {
 
 button {
   cursor: pointer;
+  outline: none;
 }
