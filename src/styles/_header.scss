@@ -1,0 +1,23 @@
+header {
+  background-color: #0D5C63;
+  height: 50px;
+  width: 100vw;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  margin: 0;
+  padding: 20px;
+}
+
+li {
+  color: #fff;
+}
+
+.logo {
+  font-family: 'Luckiest Guy', cursive;
+  margin-left: auto;
+  font-size: 28px;
+}

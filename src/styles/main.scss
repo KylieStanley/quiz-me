@@ -1,0 +1,30 @@
+@import 'answerBank';
+@import 'choices';
+@import 'splash';
+@import 'header';
+@import 'gamestatus';
+@import 'questioncontainer';
+
+
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Open+Sans+Condensed:300');
+
+h1 {
+  font-size: 100px;
+  font-family: 'Luckiest Guy', cursive;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+h2 {
+
+}
+
+h3 {
+  font-family: 'Open Sans Condensed', sans-serif;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+button {
+  cursor: pointer;
+}

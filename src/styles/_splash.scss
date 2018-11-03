@@ -1,0 +1,26 @@
+.splash-container {
+  background-color: #0D5C63;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.splash-btn {
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 1px 1px 7px 4px #0000001a;
+  color: #0D5C63;
+  font-family: Luckiest Guy;
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin: 25px;
+  padding: 20px 20px 14px 20px;
+  transition: .3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

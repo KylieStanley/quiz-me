@@ -1,28 +1,58 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Splash from './Splash.js';
+import Header from './Header.js';
+import QuestionContainer from './QuestionContainer.js';
+import AnswerBank from './AnswerBank.js';
+import GameStatus from './GameStatus.js';
+
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      showSplash: true,
+      questions: [],
+      answers: []
+    }
+  }
+
+
+  componentDidMount = () => {
+    fetch("http://memoize-datasets.herokuapp.com/api/v1/questions")
+      .then(data => data.json())
+      .then(data => {
+        this.setState({
+          questions: data.questions
+        })
+      })
+      .catch(err => console.log(err))
+  }
+  
+  renderApp() {
+    return (
+        <div className='app-container'>
+          <Header />
+          <GameStatus />
+          <QuestionContainer />
+          <AnswerBank />
+        </div>
+      )
+  }
+
+  hideSplash = () => {
+    this.setState({
+      showSplash: false
+    })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      this.state.showSplash ? <Splash hideSplash={this.hideSplash}/> : this.renderApp()     
     );
   }
 }
 
 export default App;
+
