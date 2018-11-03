@@ -28,6 +28,15 @@ class App extends Component {
         })
       })
       .catch(err => console.log(err))
+
+    fetch("http://memoize-datasets.herokuapp.com/api/v1/answers")
+      .then(data => data.json())
+      .then(data => {
+        this.setState({
+          answers: data.answers
+        })
+      })
+      .catch(err => console.log(err))
   }
   
   renderApp() {
@@ -36,7 +45,7 @@ class App extends Component {
           <Header />
           <GameStatus />
           <QuestionContainer />
-          <AnswerBank />
+          <AnswerBank answers={this.state.answers}/>
         </div>
       )
   }
