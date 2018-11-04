@@ -13,33 +13,33 @@ export default class QuestionContainer extends Component {
     };
   }
 
-    prevSlide = () => {
-      const lastIndex = this.props.questions.length - 1;
-      const { currentIndex } = this.state;
-      const shouldResetIndex = currentIndex === 0;
-      const index =  shouldResetIndex ? lastIndex : currentIndex - 1;
+  prevSlide = () => {
+    const lastIndex = this.props.questions.length - 1;
+    const { currentIndex } = this.state;
+    const shouldResetIndex = currentIndex === 0;
+    const index =  shouldResetIndex ? lastIndex : currentIndex - 1;
 
-      this.setState({
-        currentIndex: index,
-        currentQuestion: this.props.questions[index]
-      });
+    this.setState({
+      currentIndex: index,
+      currentQuestion: this.props.questions[index]
+    });
 
-      this.props.onChange(this.props.questions[index]);
-    }
+    this.props.setCurrent(this.props.questions[index]);
+  }
 
-    nextSlide = () => {
-      const lastIndex = this.props.questions.length - 1;
-      const { currentIndex } = this.state;
-      const shouldResetIndex = currentIndex === lastIndex;
-      const index =  shouldResetIndex ? 0 : currentIndex + 1;
-      console.log(this.state.currentQuestion)
-      this.setState({
-        currentIndex: index,
-        currentQuestion: this.props.questions[index]
-      });
-      
-      this.props.onChange(this.props.questions[index]);
-    }
+  nextSlide = () => {
+    const lastIndex = this.props.questions.length - 1;
+    const { currentIndex } = this.state;
+    const shouldResetIndex = currentIndex === lastIndex;
+    const index =  shouldResetIndex ? 0 : currentIndex + 1;
+    
+    this.setState({
+      currentIndex: index,
+      currentQuestion: this.props.questions[index]
+    });
+    
+    this.props.setCurrent(this.props.questions[index]);
+  }
 
   render() {
     return (

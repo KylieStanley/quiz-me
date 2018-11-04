@@ -14,7 +14,10 @@ class App extends Component {
     this.state = {
       showSplash: true,
       questions: [],
-      answers: []
+      answers: [],
+      currentQuestion: {},
+      correctAnswered: 0,
+      incorrectAnswered: 0
     }
   }
 
@@ -39,6 +42,29 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  setCurrent = (newQuestion) => {
+    this.setState({
+      currentQuestion: newQuestion
+    })
+  }
+
+  validateAnswer = (answer,e) => {
+    if (this.state.currentQuestion.id === answer.id) {
+      console.log('correct!')
+      e.target.disabled = true;
+      
+      this.setState({
+        correctAnswered: this.state.correctAnswered + 1
+      })
+    } else {
+      console.log('wrong')
+      
+      this.setState({
+        incorrectAnswered: this.state.incorrectAnswered + 1
+      })
+    }
+  }
+
   hideSplash = () => {
     this.setState({
       showSplash: false
@@ -51,16 +77,11 @@ class App extends Component {
           <Header />
           <GameStatus />
           <QuestionContainer questions={this.state.questions} 
-                             onChange={this.onChange}/>
-          <AnswerBank answers={this.state.answers}/>
+                             setCurrent={this.setCurrent}/>
+          <AnswerBank answers={this.state.answers}
+                      validateAnswer={this.validateAnswer} />
         </div>
       )
-  }
-
-  onChange = (newQuestion) => {
-    this.setState({
-      currentQuestion: newQuestion
-    })
   }
 
   render() {
