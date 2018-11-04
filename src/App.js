@@ -18,13 +18,13 @@ class App extends Component {
     }
   }
 
-
   componentDidMount = () => {
     fetch("http://memoize-datasets.herokuapp.com/api/v1/questions")
       .then(data => data.json())
       .then(data => {
         this.setState({
-          questions: data.questions
+          questions: data.questions,
+          currentQuestion: data.questions[0]
         })
       })
       .catch(err => console.log(err))
@@ -38,27 +38,34 @@ class App extends Component {
       })
       .catch(err => console.log(err))
   }
-  
-  renderApp() {
-    return (
-        <div className='app-container'>
-          <Header />
-          <GameStatus />
-          <QuestionContainer questions={this.state.questions}/>
-          <AnswerBank answers={this.state.answers}/>
-        </div>
-      )
-  }
 
   hideSplash = () => {
     this.setState({
       showSplash: false
     })
   }
+  
+  renderApp() {
+    return (
+        <div className='app-container'>
+          <Header />
+          <GameStatus />
+          <QuestionContainer questions={this.state.questions} 
+                             onChange={this.onChange}/>
+          <AnswerBank answers={this.state.answers}/>
+        </div>
+      )
+  }
+
+  onChange = (newQuestion) => {
+    this.setState({
+      currentQuestion: newQuestion
+    })
+  }
 
   render() {
     return (
-      this.state.showSplash ? <Splash hideSplash={this.hideSplash}/> : this.renderApp()     
+      this.state.showSplash ? <Splash hideSplash={this.hideSplash} /> : this.renderApp()     
     );
   }
 }

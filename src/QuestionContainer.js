@@ -23,6 +23,8 @@ export default class QuestionContainer extends Component {
         currentIndex: index,
         currentQuestion: this.props.questions[index]
       });
+
+      this.props.onChange(this.props.questions[index]);
     }
 
     nextSlide = () => {
@@ -30,11 +32,13 @@ export default class QuestionContainer extends Component {
       const { currentIndex } = this.state;
       const shouldResetIndex = currentIndex === lastIndex;
       const index =  shouldResetIndex ? 0 : currentIndex + 1;
-
+      console.log(this.state.currentQuestion)
       this.setState({
         currentIndex: index,
         currentQuestion: this.props.questions[index]
       });
+      
+      this.props.onChange(this.props.questions[index]);
     }
 
   render() {
