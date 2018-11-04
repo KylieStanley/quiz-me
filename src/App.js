@@ -17,7 +17,8 @@ class App extends Component {
       answers: [],
       currentQuestion: {},
       correctAnswered: 0,
-      incorrectAnswered: 0
+      incorrectAnswered: 0,
+      currentIndex: 0
     }
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
       .then(data => {
         this.setState({
           questions: data.questions,
-          currentQuestion: data.questions[0]
+          currentQuestion: data.questions[0],
         })
       })
       .catch(err => console.log(err))
@@ -42,22 +43,28 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  setCurrent = (newQuestion) => {
+  setCurrent = (newQuestion, newIndex) => {
     this.setState({
-      currentQuestion: newQuestion
+      currentQuestion: newQuestion,
+      currentIndex: newIndex
     })
   }
 
   validateAnswer = (answer,e) => {
-    if (this.state.currentQuestion.id === answer.id) {
-      console.log('correct!')
+    if (this.state.currentQuestion.id === answer.id && this.state.questions.length > 0) {
       e.target.disabled = true;
-      
+      e.target.classList.add('right-answer');
+      const remainingQuestions = this.state.questions.filter(question => question != this.state.currentQuestion)
+      let index = this.state.currentIndex === remainingQuestions.length ? 0 : this.state.currentIndex;
+
       this.setState({
-        correctAnswered: this.state.correctAnswered + 1
+        correctAnswered: this.state.correctAnswered + 1,
+        questions: remainingQuestions,
+        currentQuestion: remainingQuestions[index],
+        currentIndex: index
       })
+
     } else {
-      console.log('wrong')
       
       this.setState({
         incorrectAnswered: this.state.incorrectAnswered + 1
@@ -77,6 +84,8 @@ class App extends Component {
           <Header />
           <GameStatus />
           <QuestionContainer questions={this.state.questions} 
+                             currentQuestion={this.state.currentQuestion}
+                             currentIndex={this.state.currentIndex}
                              setCurrent={this.setCurrent}/>
           <AnswerBank answers={this.state.answers}
                       validateAnswer={this.validateAnswer} />
