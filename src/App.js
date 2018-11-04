@@ -51,26 +51,30 @@ class App extends Component {
   }
 
   validateAnswer = (answer,e) => {
-    const remainingQuestions = this.state.questions.filter(question => question != this.state.currentQuestion);
-    let index = this.state.currentIndex === remainingQuestions.length ? 0 : this.state.currentIndex;
-    let correctAnswered = this.state.correctAnswered;
-    let incorrectAnswered = this.state.incorrectAnswered;
+    const { questions, currentQuestion, currentIndex, correctAnswered, incorrectAnswered } = this.state;
+    const choice = e.target;
+    const remainingQuestions = questions.filter(question => question != currentQuestion);
+    let index = currentIndex === remainingQuestions.length ? 0 : currentIndex;
+    let correctCount = correctAnswered;
+    let incorrectCount = incorrectAnswered;
 
-    if (this.state.currentQuestion.id === answer.id) {
-      e.target.disabled = true;
-      e.target.classList.add('right-answer');
-      correctAnswered = this.state.correctAnswered + 1;
+    if (currentQuestion.id === answer.id) {
+      choice.disabled = true;
+      choice.classList.add('right-answer');
+      correctCount = correctAnswered + 1;
     } else {
-      incorrectAnswered = this.state.incorrectAnswered + 1;
-      e.target.classList.add('right-answer');
-      e.target.classList.remove('right-answer');
+      incorrectCount = incorrectAnswered + 1;
+      choice.classList.add('wrong-answer');
+      setTimeout(function removeClass() {
+        choice.classList.remove('wrong-answer')
+      }, 1000);
     }
      this.setState({
       questions: remainingQuestions,
       currentQuestion: remainingQuestions[index],
       currentIndex: index,
-      correctAnswered: correctAnswered,
-      incorrectAnswered: incorrectAnswered
+      correctAnswered: correctCount,
+      incorrectAnswered: incorrectCount
     })
   }
 

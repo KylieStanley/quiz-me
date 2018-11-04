@@ -38,3 +38,7 @@
               inset -2px 3px 6px 0px #003a3475;
   color: #00000096;
 }
+
+.wrong-answer {
+  animation: wrongAnswer .8s ease-out;
+}
