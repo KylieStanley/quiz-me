@@ -13,25 +13,18 @@ export default class QuestionContainer extends Component {
     };
   }
 
-  prevSlide = () => {
+  changeSlide = (e) => {
     const lastIndex = this.props.questions.length - 1;
     const { currentIndex } = this.state;
-    const shouldResetIndex = currentIndex === 0;
-    const index =  shouldResetIndex ? lastIndex : currentIndex - 1;
+    let index;
 
-    this.setState({
-      currentIndex: index,
-      currentQuestion: this.props.questions[index]
-    });
-
-    this.props.setCurrent(this.props.questions[index], index);
-  }
-
-  nextSlide = () => {
-    const lastIndex = this.props.questions.length - 1;
-    const { currentIndex } = this.state;
-    const shouldResetIndex = currentIndex === lastIndex;
-    const index =  shouldResetIndex ? 0 : currentIndex + 1;
+    if (e.target.classList.contains('next')) {
+      const shouldResetIndex = currentIndex === lastIndex;
+      index =  shouldResetIndex ? 0 : currentIndex + 1; 
+    } else {
+      const shouldResetIndex = currentIndex === 0;
+      index =  shouldResetIndex ? lastIndex : currentIndex - 1;
+    }
     
     this.setState({
       currentIndex: index,
@@ -42,7 +35,6 @@ export default class QuestionContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps.current, this.props.currentIndex)
     if (this.props.currentIndex !== prevProps.currentIndex) {
       this.setState({
         currentIndex: this.props.currentIndex
@@ -56,15 +48,13 @@ export default class QuestionContainer extends Component {
       <div className="question-container">
         <Question currentQuestion={this.props.questions[index]} />
         <div>
-          <button className="carousel-btn" onClick={this.prevSlide}><i className="fas fa-arrow-alt-circle-left"></i>Prev</button>    
-          <button className="carousel-btn" onClick={this.nextSlide}>Next<i className="fas fa-arrow-alt-circle-right"></i></button>
+          <button className="carousel-btn prev" onClick={(e)=>this.changeSlide(e)}><i className="fas fa-arrow-alt-circle-left prev"></i>Prev</button>    
+          <button className="carousel-btn next" onClick={(e)=>this.changeSlide(e)}>Next<i className="fas fa-arrow-alt-circle-right next"></i></button>
         </div>
       </div>
     );
   }
 }
-
-
 
 
 
