@@ -27,12 +27,14 @@ export default class AnswerBank extends Component {
 
   render() {
     return (
+      <div className="answer-wrapper">
       <div className="answer-container">
       {
         this.state.answers.map(answer => {
           return <button className="answer-btn" onClick={(e)=>this.props.validateAnswer(answer, e)}>{answer.answer}</button>
         })
       }
+      </div>
       </div>
     );
   }
