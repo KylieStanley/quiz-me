@@ -56,7 +56,7 @@ class App extends Component {
     let correctAnswered = this.state.correctAnswered;
     let incorrectAnswered = this.state.incorrectAnswered;
 
-    if (this.state.currentQuestion.id === answer.id && this.state.questions.length > 0) {
+    if (this.state.currentQuestion.id === answer.id) {
       e.target.disabled = true;
       e.target.classList.add('right-answer');
       correctAnswered = this.state.correctAnswered + 1
