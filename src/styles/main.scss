@@ -5,28 +5,47 @@
 @import 'header';
 @import 'gamestatus';
 @import 'questioncontainer';
+@import 'variables';
 
 
-@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Open+Sans+Condensed:300');
+h1,h3,h4,p,ul {
+  margin: 0;
+}
 
 h1 {
   font-size: 100px;
-  font-family: 'Luckiest Guy', cursive;
+  font-family: $title-font;
   letter-spacing: 3px;
-  margin: 0;
 }
 
 h2 {
-
+  font-family: $main-font;
 }
 
 h3 {
-  font-family: 'Open Sans Condensed', sans-serif;
-  margin: 0;
+  font-family: $main-condensed;
   letter-spacing: 1px;
+}
+
+h4 {
+  font-family: $main-font;
+  font-size: 40px; 
+}
+
+p {
+  font-size: 12px;
+  width: 120px;
 }
 
 button {
   cursor: pointer;
   outline: none;
+  font-family: $main-font;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding: 0;
 }

@@ -1,3 +1,5 @@
+@import 'variables';
+
 .splash-container {
   background-color: #0D5C63;
   min-height: 100vh;
@@ -13,7 +15,7 @@
   border-radius: 30px;
   box-shadow: 1px 1px 7px 4px #0000001a;
   color: #0D5C63;
-  font-family: Luckiest Guy;
+  font-family: $title-font;
   font-size: 22px;
   letter-spacing: 1px;
   margin: 25px;

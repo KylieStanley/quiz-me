@@ -51,25 +51,25 @@ class App extends Component {
   }
 
   validateAnswer = (answer,e) => {
+    const remainingQuestions = this.state.questions.filter(question => question != this.state.currentQuestion);
+    let index = this.state.currentIndex === remainingQuestions.length ? 0 : this.state.currentIndex;
+    let correctAnswered = this.state.correctAnswered;
+    let incorrectAnswered = this.state.incorrectAnswered;
+
     if (this.state.currentQuestion.id === answer.id && this.state.questions.length > 0) {
       e.target.disabled = true;
       e.target.classList.add('right-answer');
-      const remainingQuestions = this.state.questions.filter(question => question != this.state.currentQuestion)
-      let index = this.state.currentIndex === remainingQuestions.length ? 0 : this.state.currentIndex;
-
-      this.setState({
-        correctAnswered: this.state.correctAnswered + 1,
-        questions: remainingQuestions,
-        currentQuestion: remainingQuestions[index],
-        currentIndex: index
-      })
-
+      correctAnswered = this.state.correctAnswered + 1
     } else {
-      
-      this.setState({
-        incorrectAnswered: this.state.incorrectAnswered + 1
-      })
+      incorrectAnswered = this.state.incorrectAnswered + 1
     }
+     this.setState({
+      questions: remainingQuestions,
+      currentQuestion: remainingQuestions[index],
+      currentIndex: index,
+      correctAnswered: correctAnswered,
+      incorrectAnswered: incorrectAnswered
+    })
   }
 
   hideSplash = () => {
@@ -79,15 +79,18 @@ class App extends Component {
   }
   
   renderApp() {
+    const { questions, answers, currentQuestion, currentIndex, correctAnswered, incorrectAnswered } = this.state;
     return (
         <div className='app-container'>
           <Header />
-          <GameStatus />
-          <QuestionContainer questions={this.state.questions} 
-                             currentQuestion={this.state.currentQuestion}
-                             currentIndex={this.state.currentIndex}
+          <GameStatus questions={questions}
+                      correctAnswered={correctAnswered}
+                      incorrectAnswered={incorrectAnswered}/>
+          <QuestionContainer questions={questions} 
+                             currentQuestion={currentQuestion}
+                             currentIndex={currentIndex}
                              setCurrent={this.setCurrent}/>
-          <AnswerBank answers={this.state.answers}
+          <AnswerBank answers={answers}
                       validateAnswer={this.validateAnswer} />
         </div>
       )

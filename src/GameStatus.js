@@ -6,21 +6,27 @@ export default class GameStatus extends Component {
   render() {
     return (
       <div className="status-container">
-      <ul>
-        <li>Questions</li>
-        <li>Remaining</li>
-        <li>Correct</li>
-        <li>Incorrect</li>
-        <li className="score">Score</li>
-        <li>Timer</li>
-      </ul>
-      <ul>
-        <li>31</li>
-        <li>28</li>
-        <li>3</li>
-        <li>0</li>
-        <li className="score">28/31</li>
-        <li>5:51</li>
+      <ul className="statuses">
+        <li>
+          <p>Questions Remaining</p>
+          <h4>{this.props.questions.length}</h4>
+        </li>
+        <li>
+          <p>Correct</p>
+          <h4>{this.props.correctAnswered}</h4>
+        </li>
+        <li>
+          <p>Incorrect</p>
+          <h4>{this.props.incorrectAnswered}</h4>
+        </li>
+        <li className="score">
+          <p>Score</p>
+          <h4>{this.props.correctAnswered}/31</h4>
+        </li>
+        <li>
+          <p>Timer</p>
+          <h4>5:51</h4>
+        </li>
       </ul>
       </div>
     );

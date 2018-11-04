@@ -1,8 +1,21 @@
+@import 'variables';
+
 .status-container {
-  display: flex;
-  flex-direction: column;
+  height: 100px;
+  margin: 0 auto;
+  width: 95%;
 }
 
 .score {
   margin-left: auto;
+}
+
+.statuses {
+  align-items: flex-end;
+  height: 100%;
+
+  li {
+    text-align: center;
+    padding: 3px; 
+  }
 }

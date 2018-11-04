@@ -6,7 +6,7 @@ export default class Header extends Component {
   render() {
     return (
       <header>
-        <ul>
+        <ul className="header">
           <li>Test your knowledge:</li>
           <li>Arrays</li>
           <li>Strings</li>
