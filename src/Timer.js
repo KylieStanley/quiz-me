@@ -6,7 +6,7 @@ export default class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      seconds: '30',
+      seconds: '00',
       minutes: '4'
     };
   }
@@ -32,7 +32,7 @@ export default class Timer extends Component {
       })
     }
 
-    if (min === 0 & sec === 0) {
+    if (min === 0 & sec === 0 || !this.props.questions.length) {
       clearInterval(this.handleInterval);
     }
 
@@ -41,7 +41,7 @@ export default class Timer extends Component {
 
   render() {
     return (
-      <h4>{this.state.minutes}:{this.state.seconds}</h4>
+      <h2>{this.state.minutes}:{this.state.seconds}</h2>
 
     );
   }

@@ -8,10 +8,11 @@ $title-font: 'Luckiest Guy', cursive;
 
 @keyframes wrongAnswer {
     0% {
+    background-color: #ff1f1fbd;
+    box-shadow: 1px 1px 4px #c3c3c3a1, 
+                inset 4px 4px 7px #ffcccc;
+    border: 1px solid #ffc1c1;
     color: #00000096;
-      box-shadow: inset 0 0 20px 2px #0096881c, 
-                  inset -2px 3px 6px 0px #3a000075;
-      background-color: #ff1f1fbd;
     }
     100% {}
 }

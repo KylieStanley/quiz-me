@@ -17,23 +17,23 @@ export default class GameStatus extends Component {
       <ul className="statuses">
         <li>
           <p>Questions Remaining</p>
-          <h4>{this.props.questions.length}</h4>
+          <h2>{this.props.questions.length}</h2>
         </li>
         <li>
           <p>Correct</p>
-          <h4>{this.props.correctAnswered}</h4>
+          <h2>{this.props.correctAnswered}</h2>
         </li>
         <li>
           <p>Incorrect</p>
-          <h4>{this.props.incorrectAnswered}</h4>
+          <h2>{this.props.incorrectAnswered}</h2>
         </li>
         <li className="score">
           <p>Score</p>
-          <h4>{this.props.correctAnswered}/31</h4>
+          <h2>{this.props.correctAnswered}/31</h2>
         </li>
         <li>
           <p>Timer</p>
-          <Timer />
+          <Timer questions={this.props.questions}/>
         </li>
       </ul>
       </div>

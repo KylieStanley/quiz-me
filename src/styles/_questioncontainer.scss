@@ -6,6 +6,7 @@
   border: 2px solid black;
   border-radius: 10px 10px 0 0;
   display: grid;
+  justify-items: center;
   grid-template-rows: 60% 40%;
   height: 190px;
 
@@ -17,6 +18,7 @@
 .carousel-btn {
   border-radius: 30px;
   font-size: 16px;
+  font-weight: bold;
   margin: 0 10px;
   padding: 5px 15px;
 }

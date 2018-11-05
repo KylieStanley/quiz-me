@@ -5,7 +5,7 @@ import './styles/main.scss';
 export default class Question extends Component {
   render() {
     return (
-        <h2 className="current-question">{this.props.currentQuestion.question}</h2>
-    );
+      <h4 className="current-question">{this.props.currentQuestion.question}</h4>
+    ); 
   }
 }

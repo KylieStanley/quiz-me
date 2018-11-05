@@ -18,7 +18,8 @@ class App extends Component {
       currentQuestion: {},
       correctAnswered: 0,
       incorrectAnswered: 0,
-      currentIndex: 0
+      currentIndex: 0,
+      incorrectQuestions: []
     }
   }
 
@@ -51,7 +52,8 @@ class App extends Component {
   }
 
   validateAnswer = (answer,e) => {
-    const { questions, currentQuestion, currentIndex, correctAnswered, incorrectAnswered } = this.state;
+    const { questions, currentQuestion, currentIndex, correctAnswered, 
+            incorrectAnswered, incorrectQuestions } = this.state;
     const choice = e.target;
     const remainingQuestions = questions.filter(question => question != currentQuestion);
     let index = currentIndex === remainingQuestions.length ? 0 : currentIndex;
@@ -63,6 +65,7 @@ class App extends Component {
       choice.classList.add('right-answer');
       correctCount = correctAnswered + 1;
     } else {
+      incorrectQuestions.push(currentQuestion);
       incorrectCount = incorrectAnswered + 1;
       choice.classList.add('wrong-answer');
       setTimeout(function removeClass() {
@@ -74,7 +77,8 @@ class App extends Component {
       currentQuestion: remainingQuestions[index],
       currentIndex: index,
       correctAnswered: correctCount,
-      incorrectAnswered: incorrectCount
+      incorrectAnswered: incorrectCount,
+      incorrectQuestions: incorrectQuestions
     })
   }
 
@@ -94,6 +98,7 @@ class App extends Component {
                       incorrectAnswered={incorrectAnswered}/>
           <QuestionContainer questions={questions} 
                              currentQuestion={currentQuestion}
+                             correctAnswered={correctAnswered}
                              currentIndex={currentIndex}
                              setCurrent={this.setCurrent}/>
           <AnswerBank answers={answers}

@@ -43,16 +43,29 @@ export default class QuestionContainer extends Component {
   }
 
   render() {
+    if (this.props.currentQuestion) {
     let index = !this.props.questions[this.state.currentIndex] ? 0 : this.state.currentIndex;
-    return (
-      <div className="question-container">
-        <Question currentQuestion={this.props.questions[index]} />
-        <div>
-          <button className="carousel-btn prev" onClick={(e)=>this.changeSlide(e)}><i className="fas fa-arrow-alt-circle-left prev"></i>Prev</button>    
-          <button className="carousel-btn next" onClick={(e)=>this.changeSlide(e)}>Next<i className="fas fa-arrow-alt-circle-right next"></i></button>
+      return (
+        <div className="question-container">
+          <Question currentQuestion={this.props.questions[index]} 
+                    correctAnswered={this.props.correctAnswered} />
+          <div>
+            <button className="carousel-btn prev" onClick={(e)=>this.changeSlide(e)}><i className="fas fa-arrow-alt-circle-left prev"></i>Prev</button>    
+            <button className="carousel-btn next" onClick={(e)=>this.changeSlide(e)}>Next<i className="fas fa-arrow-alt-circle-right next"></i></button>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+        return (
+          <div className="question-container">
+            <h4>Your score was { 
+              (Math.floor((this.props.correctAnswered / 31) * 100))
+              }%
+            </h4>
+          <button className="carousel-btn">Try Again</button>
+        </div>
+      );
+    }  
   }
 }
 
