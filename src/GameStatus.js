@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+import Timer from './Timer.js';
 import './styles/main.scss';
 
 
 export default class GameStatus extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      seconds: '00',
+      minutes: '5'
+    }
+  }
   render() {
     return (
       <div className="status-container">
@@ -25,7 +33,7 @@ export default class GameStatus extends Component {
         </li>
         <li>
           <p>Timer</p>
-          <h4>5:51</h4>
+          <Timer />
         </li>
       </ul>
       </div>
