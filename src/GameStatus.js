@@ -6,10 +6,6 @@ import './styles/main.scss';
 export default class GameStatus extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      seconds: '00',
-      minutes: '5'
-    }
   }
   render() {
     return (
@@ -33,7 +29,10 @@ export default class GameStatus extends Component {
         </li>
         <li>
           <p>Timer</p>
-          <Timer questions={this.props.questions}/>
+          <Timer questions={this.props.questions}
+                 minutes={this.props.minutes}
+                 seconds={this.props.seconds} 
+                 tick={this.props.tick} />
         </li>
       </ul>
       </div>

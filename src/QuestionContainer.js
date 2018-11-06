@@ -9,7 +9,7 @@ export default class QuestionContainer extends Component {
 
     this.state = {
       currentIndex: 0,
-      currentQuestion: {}
+      currentQuestion: {},
     };
   }
 
@@ -43,8 +43,18 @@ export default class QuestionContainer extends Component {
   }
 
   render() {
-    if (this.props.currentQuestion) {
     let index = !this.props.questions[this.state.currentIndex] ? 0 : this.state.currentIndex;
+    if ((this.props.seconds === '00' && this.props.minutes === 0) || !this.props.currentQuestion) {
+      return (
+        <div className="question-container">
+          <h2 className="your-score">Your score was { 
+            (Math.floor((this.props.correctAnswered / 31) * 100))
+            }%
+          </h2>
+          <button className="carousel-btn">Try Again</button>
+        </div>
+      );
+    } else {
       return (
         <div className="question-container">
           <Question currentQuestion={this.props.questions[index]} 
@@ -54,17 +64,7 @@ export default class QuestionContainer extends Component {
             <button className="carousel-btn next" onClick={(e)=>this.changeSlide(e)}>Next<i className="fas fa-arrow-alt-circle-right next"></i></button>
           </div>
         </div>
-      );
-    } else {
-        return (
-          <div className="question-container">
-            <h4>Your score was { 
-              (Math.floor((this.props.correctAnswered / 31) * 100))
-              }%
-            </h4>
-          <button className="carousel-btn">Try Again</button>
-        </div>
-      );
+      );  
     }  
   }
 }

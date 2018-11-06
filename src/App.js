@@ -19,7 +19,9 @@ class App extends Component {
       correctAnswered: 0,
       incorrectAnswered: 0,
       currentIndex: 0,
-      incorrectQuestions: []
+      incorrectQuestions: [],
+      minutes: '7',
+      seconds: '10'
     }
   }
 
@@ -54,23 +56,16 @@ class App extends Component {
   validateAnswer = (answer,e) => {
     const { questions, currentQuestion, currentIndex, correctAnswered, 
             incorrectAnswered, incorrectQuestions } = this.state;
-    const choice = e.target;
     const remainingQuestions = questions.filter(question => question != currentQuestion);
     let index = currentIndex === remainingQuestions.length ? 0 : currentIndex;
     let correctCount = correctAnswered;
     let incorrectCount = incorrectAnswered;
 
     if (currentQuestion.id === answer.id) {
-      choice.disabled = true;
-      choice.classList.add('right-answer');
       correctCount = correctAnswered + 1;
     } else {
       incorrectQuestions.push(currentQuestion);
       incorrectCount = incorrectAnswered + 1;
-      choice.classList.add('wrong-answer');
-      setTimeout(function removeClass() {
-        choice.classList.remove('wrong-answer')
-      }, 1000);
     }
      this.setState({
       questions: remainingQuestions,
@@ -78,31 +73,67 @@ class App extends Component {
       currentIndex: index,
       correctAnswered: correctCount,
       incorrectAnswered: incorrectCount,
-      incorrectQuestions: incorrectQuestions
+      incorrectQuestions: incorrectQuestions,
     })
   }
+
+  tick = () => {
+    let min = Math.floor(this.secondsRemaining / 60);
+    let sec = this.secondsRemaining - (min * 60)
+
+    this.setState({
+      minutes: min,
+      seconds: sec
+    });
+
+    if (sec < 10) {
+      this.setState({
+        seconds: "0" + this.state.seconds
+      })
+    }
+
+    if (min === 0 & sec === 0 || !this.state.questions.length) {
+      clearInterval(this.handleInterval);
+    }
+
+    this.secondsRemaining--
+  }
+
 
   hideSplash = () => {
     this.setState({
       showSplash: false
     })
+
+    this.handleInterval = setInterval(this.tick, 1000);
+    let time = this.state.minutes;
+    this.secondsRemaining = time * 60 + parseInt(this.state.seconds);
   }
   
   renderApp() {
-    const { questions, answers, currentQuestion, currentIndex, correctAnswered, incorrectAnswered } = this.state;
+    const { questions, answers, currentQuestion, currentIndex, correctAnswered, incorrectAnswered, seconds, minutes } = this.state;
     return (
         <div className='app-container'>
           <Header />
           <GameStatus questions={questions}
                       correctAnswered={correctAnswered}
-                      incorrectAnswered={incorrectAnswered}/>
+                      incorrectAnswered={incorrectAnswered}
+                      minutes={minutes}
+                      seconds={seconds}
+                      tick={this.tick}/>
+
           <QuestionContainer questions={questions} 
                              currentQuestion={currentQuestion}
                              correctAnswered={correctAnswered}
                              currentIndex={currentIndex}
-                             setCurrent={this.setCurrent}/>
+                             setCurrent={this.setCurrent}
+                             minutes={minutes}
+                             seconds={seconds} />
           <AnswerBank answers={answers}
-                      validateAnswer={this.validateAnswer} />
+                      validateAnswer={this.validateAnswer}
+                      currentQuestion={currentQuestion}
+                      minutes={minutes}
+                      seconds={seconds} />
         </div>
       )
   }

@@ -1,5 +1,5 @@
 @import 'answerBank';
-@import 'choices';
+@import 'answer';
 @import 'question';
 @import 'splash';
 @import 'header';
@@ -49,4 +49,9 @@ ul {
   justify-content: flex-start;
   list-style-type: none;
   padding: 0;
+}
+
+li {
+  color: #fff;
+  font-family: $main-font;
 }

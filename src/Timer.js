@@ -11,37 +11,41 @@ export default class Timer extends Component {
     };
   }
 
-  componentDidMount = () => {
-    this.handleInterval = setInterval(this.tick, 1000);
-    let time = this.state.minutes;
-    this.secondsRemaining = time * 60 + parseInt(this.state.seconds);
+  componentWillMount () {
+    this.setState({ seconds: this.props.answers, minutes: this.props.minutes});
   }
 
-  tick = () => {
-    let min = Math.floor(this.secondsRemaining / 60);
-    let sec = this.secondsRemaining - (min * 60)
+  // componentDidMount = () => {
+  //   this.handleInterval = setInterval(this.props.tick, 1000);
+  //   let time = this.props.minutes;
+  //   this.secondsRemaining = time * 60 + parseInt(this.props.seconds);
+  // }
 
-    this.setState({
-      minutes: min,
-      seconds: sec
-    });
+  // tick = () => {
+  //   let min = Math.floor(this.secondsRemaining / 60);
+  //   let sec = this.secondsRemaining - (min * 60)
 
-    if (sec < 10) {
-      this.setState({
-        seconds: "0" + this.state.seconds
-      })
-    }
+  //   this.setState({
+  //     minutes: min,
+  //     seconds: sec
+  //   });
 
-    if (min === 0 & sec === 0 || !this.props.questions.length) {
-      clearInterval(this.handleInterval);
-    }
+  //   if (sec < 10) {
+  //     this.setState({
+  //       seconds: "0" + this.props.seconds
+  //     })
+  //   }
 
-    this.secondsRemaining--
-  }
+  //   if (min === 0 & sec === 0 || !this.props.questions.length) {
+  //     clearInterval(this.handleInterval);
+  //   }
+
+  //   this.secondsRemaining--
+  // }
 
   render() {
     return (
-      <h2>{this.state.minutes}:{this.state.seconds}</h2>
+      <h2>{this.props.minutes}:{this.props.seconds}</h2>
 
     );
   }

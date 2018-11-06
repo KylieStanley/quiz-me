@@ -2,25 +2,62 @@
 
 header {
   background-color: #0D5C63;
-  display: flex;
-  align-items: center;
   height: 50px;
   width: 100vw;
+  display: flex;
 }
 
-.header {
-  margin: 0 auto;
-  padding-top: 7px;
+.nav-logo {
+  align-items: stretch;
+  display: flex;
   width: 95%;
+  margin: 0 auto;
 }
 
-li {
-  color: #fff;
+.nav {
+  flex-basis: 80%;
+
+  & li {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    flex-direction: column;
+    transition: .3s;
+  }
+
+  & li:first-child {
+    padding-right: 10px;
+  }
+
+  & li:nth-child(n+2) {
+    padding: 0 13px;
+  }
+     
+  & .active {
+    background-color: #fff;
+    color: #242727;;
+  }
+
 }
+
+.navitem:hover {
+  background-color: #44A1A0;
+  cursor: pointer;
+}
+
 
 .logo {
+  color: #fff;
+  display: flex;
+  flex-basis: 20%;
+  flex-direction: column;
   font-family: $title-font;
-  margin-left: auto;
   font-size: 28px;
+  justify-content: center;
   line-height: 1;
+  margin-left: auto;
+  padding-top: 7px;
+  text-align: right;
 }
+
+

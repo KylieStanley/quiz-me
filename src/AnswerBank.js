@@ -26,10 +26,6 @@ export default class AnswerBank extends Component {
     this.setState({ answers: this.shuffleArray(this.props.answers)});
   }
 
-  // componentDidMount() {
-  //   this.answerBtn.classList.add('wrong-answer');
-  // }
-
   render() {
     return (
       <div className="answer-wrapper">
@@ -38,7 +34,10 @@ export default class AnswerBank extends Component {
         this.state.answers.map(answer => {
           // return <button className="answer-btn" onClick={(e)=>this.props.validateAnswer(answer, e)} ref={this.answerBtn}>{answer.answer}</button>
           return <Answer answer={answer} 
-                         validateAnswer={this.props.validateAnswer} />
+                         currentQuestion={this.props.currentQuestion}
+                         validateAnswer={this.props.validateAnswer} 
+                         minutes={this.props.minutes}
+                         seconds={this.props.seconds} />
         })
       }
       </div>
