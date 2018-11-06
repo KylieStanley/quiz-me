@@ -6,7 +6,6 @@ import Question from './Question.js'
 export default class QuestionContainer extends Component {
   constructor (props) {
     super(props);
-
     this.state = {
       currentIndex: 0,
       currentQuestion: {},

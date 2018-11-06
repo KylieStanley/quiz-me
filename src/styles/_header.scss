@@ -10,7 +10,7 @@ header {
 .nav-logo {
   align-items: stretch;
   display: flex;
-  width: 75%;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -41,7 +41,7 @@ header {
 }
 
 .navitem:hover {
-  background-color: #44A1A0;
+  background-color: $light-teal;
   cursor: pointer;
 }
 

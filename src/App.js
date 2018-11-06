@@ -118,16 +118,16 @@ class App extends Component {
         return questionType.indexOf(answer.category) > -1;
       })
     }
-      this.setState({
-        questions: newStudyQuestions ? newStudyQuestions : this.state.allQuestions,
-        answers: newStudyAnswers ? newStudyAnswers : this.state.allAnswers,
-        currentQuestion: newStudyQuestions ? newStudyQuestions[0] : this.state.allQuestions[0],
-        correctAnswered: 0,
-        incorrectAnswered: 0,
-        minutes: '4',
-        seconds: '00',
-        tryAgainClass: questionType
-      }, this.startTimer) 
+    this.setState({
+      questions: newStudyQuestions ? newStudyQuestions : this.state.allQuestions,
+      answers: newStudyAnswers ? newStudyAnswers : this.state.allAnswers,
+      currentQuestion: newStudyQuestions ? newStudyQuestions[0] : this.state.allQuestions[0],
+      correctAnswered: 0,
+      incorrectAnswered: 0,
+      minutes: '4',
+      seconds: '00',
+      tryAgainClass: questionType
+    }, this.startTimer) 
 
     clearInterval(this.handleInterval)
   }
