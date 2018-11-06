@@ -48,18 +48,16 @@ export default class QuestionContainer extends Component {
       return (
         <div className="question-container">
           <h2 className="your-score">Your score was { 
-            (Math.floor((this.props.correctAnswered / 31) * 100))
+            (Math.floor((this.props.correctAnswered / this.props.answers.length) * 100))
             }%
           </h2>
-          <button className="carousel-btn">Try Again</button>
+          <button className={`carousel-btn ${this.props.tryAgainClass}`} onClick={this.props.modifyQuestions}>Try Again</button>
         </div>
       );
     } else {
       return (
         <div className="question-container">
-          <Question currentQuestion={this.props.questions[index]} 
-                    // correctAnswered={this.props.correctAnswered} 
-                    />
+          <Question currentQuestion={this.props.questions[index]} />
           <div>
             <button className="carousel-btn prev" onClick={(e)=>this.changeSlide(e)}><i className="fas fa-arrow-alt-circle-left prev"></i>Prev</button>    
             <button className="carousel-btn next" onClick={(e)=>this.changeSlide(e)}>Next<i className="fas fa-arrow-alt-circle-right next"></i></button>

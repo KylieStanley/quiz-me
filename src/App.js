@@ -22,8 +22,8 @@ class App extends Component {
       incorrectAnswered: 0,
       currentIndex: 0,
       incorrectQuestions: [],
-      minutes: '7',
-      seconds: '10'
+      minutes: '4',
+      seconds: '00'
     }
   }
 
@@ -69,6 +69,7 @@ class App extends Component {
       correctCount = correctAnswered + 1;
     } else {
       incorrectQuestions.push(currentQuestion);
+      //set item in local storage
       incorrectCount = incorrectAnswered + 1;
     }
      this.setState({
@@ -101,11 +102,9 @@ class App extends Component {
         seconds: "0" + this.state.seconds
       })
     }
-
     if (min === 0 & sec === 0 || !this.state.questions.length) {
       clearInterval(this.handleInterval);
     }
-
     this.secondsRemaining--
   }
 
@@ -125,8 +124,9 @@ class App extends Component {
         currentQuestion: newStudyQuestions ? newStudyQuestions[0] : this.state.allQuestions[0],
         correctAnswered: 0,
         incorrectAnswered: 0,
-        minutes: '7',
-        seconds: '10'
+        minutes: '4',
+        seconds: '00',
+        tryAgainClass: questionType
       }, this.startTimer) 
 
     clearInterval(this.handleInterval)
@@ -140,7 +140,8 @@ class App extends Component {
   }
   
   renderApp() {
-    const { questions, answers, currentQuestion, currentIndex, correctAnswered, incorrectAnswered, seconds, minutes } = this.state;
+    const { questions, answers, currentQuestion, currentIndex, correctAnswered, 
+            incorrectAnswered, seconds, minutes, tryAgainClass } = this.state;
     return (
         <div className='app-container'>
           <Header modifyQuestions={this.modifyQuestions} />
@@ -151,14 +152,16 @@ class App extends Component {
                       minutes={minutes}
                       seconds={seconds}
                       tick={this.tick} />
-
           <QuestionContainer questions={questions} 
+                             answers={answers}
                              currentQuestion={currentQuestion}
                              correctAnswered={correctAnswered}
+                             modifyQuestions={this.modifyQuestions}
                              currentIndex={currentIndex}
                              setCurrent={this.setCurrent}
                              minutes={minutes}
-                             seconds={seconds} />
+                             seconds={seconds} 
+                             tryAgainClass={tryAgainClass}/>
           <AnswerBank answers={answers}
                       validateAnswer={this.validateAnswer}
                       currentQuestion={currentQuestion}

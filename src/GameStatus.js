@@ -29,10 +29,8 @@ export default class GameStatus extends Component {
         </li>
         <li>
           <p>Timer</p>
-          <Timer questions={this.props.questions}
-                 minutes={this.props.minutes}
-                 seconds={this.props.seconds} 
-                 tick={this.props.tick} />
+          <Timer minutes={this.props.minutes}
+                 seconds={this.props.seconds} />
         </li>
       </ul>
       </div>

@@ -27,7 +27,7 @@ export default class Answer extends Component {
 
  componentDidUpdate(prevProps) {
     if (this.props.seconds !== prevProps.seconds && 
-      (this.props.minutes === '7' && this.props.seconds === '10')) {
+      (this.props.minutes === '4' && this.props.seconds === '00')) {
       this.setState({
         answerType: 'answer-btn'
       })
@@ -39,7 +39,7 @@ export default class Answer extends Component {
     let button;
     if ((this.props.seconds === '00' && this.props.minutes === 0) || !this.props.currentQuestion) {
       button = <button className={answerType} disabled={true} onClick={(e)=>this.handleAnswer(this.props.answer, e)}>{this.props.answer.answer}</button>
-    } else if (this.props.seconds === '10' && this.props.minutes === '7') {
+    } else if (this.props.seconds === '00' && this.props.minutes === '4') {
       button = <button className={answerType} disabled={false} onClick={(e)=>this.handleAnswer(this.props.answer, e)}>{this.props.answer.answer}</button>
     } else {
       button = <button className={answerType} onClick={(e)=>this.handleAnswer(this.props.answer, e)}>{this.props.answer.answer}</button>
