@@ -26,21 +26,28 @@ export default class AnswerBank extends Component {
     this.setState({ answers: this.shuffleArray(this.props.answers)});
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.answers !== prevProps.answers) {
+      this.setState({
+        answers: this.props.answers
+      })
+    }
+  }
+
   render() {
     return (
       <div className="answer-wrapper">
-      <div className="answer-container">
-      {
-        this.state.answers.map(answer => {
-          // return <button className="answer-btn" onClick={(e)=>this.props.validateAnswer(answer, e)} ref={this.answerBtn}>{answer.answer}</button>
-          return <Answer answer={answer} 
-                         currentQuestion={this.props.currentQuestion}
-                         validateAnswer={this.props.validateAnswer} 
-                         minutes={this.props.minutes}
-                         seconds={this.props.seconds} />
-        })
-      }
-      </div>
+        <div className="answer-container">
+        {
+          this.state.answers.map(answer => {
+            return <Answer answer={answer} 
+                           currentQuestion={this.props.currentQuestion}
+                           validateAnswer={this.props.validateAnswer} 
+                           minutes={this.props.minutes}
+                           seconds={this.props.seconds} />
+          })
+        }
+        </div>
       </div>
     );
   }

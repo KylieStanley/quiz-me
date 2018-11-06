@@ -58,7 +58,8 @@ export default class QuestionContainer extends Component {
       return (
         <div className="question-container">
           <Question currentQuestion={this.props.questions[index]} 
-                    correctAnswered={this.props.correctAnswered} />
+                    // correctAnswered={this.props.correctAnswered} 
+                    />
           <div>
             <button className="carousel-btn prev" onClick={(e)=>this.changeSlide(e)}><i className="fas fa-arrow-alt-circle-left prev"></i>Prev</button>    
             <button className="carousel-btn next" onClick={(e)=>this.changeSlide(e)}>Next<i className="fas fa-arrow-alt-circle-right next"></i></button>
@@ -68,14 +69,3 @@ export default class QuestionContainer extends Component {
     }  
   }
 }
-
-
-
-  // componentWillMount () {
-  //   this.setState({ 
-  //     currentIndex: 0,
-  //     currentQuestion: this.props.currentQuestion
-  //   });
-  // }
-
-  // 

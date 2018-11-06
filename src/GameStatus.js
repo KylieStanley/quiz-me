@@ -25,7 +25,7 @@ export default class GameStatus extends Component {
         </li>
         <li className="score">
           <p>Score</p>
-          <h2>{this.props.correctAnswered}/31</h2>
+          <h2>{this.props.correctAnswered}/{this.props.answers.length}</h2>
         </li>
         <li>
           <p>Timer</p>

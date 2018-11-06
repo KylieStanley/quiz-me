@@ -13,7 +13,9 @@ class App extends Component {
     super()
     this.state = {
       showSplash: true,
+      allQuestions: [],
       questions: [],
+      allAnswers: [],
       answers: [],
       currentQuestion: {},
       correctAnswered: 0,
@@ -30,6 +32,7 @@ class App extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({
+          allQuestions: data.questions,
           questions: data.questions,
           currentQuestion: data.questions[0],
         })
@@ -40,6 +43,7 @@ class App extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({
+          allAnswers: data.answers,
           answers: data.answers
         })
       })
@@ -77,6 +81,12 @@ class App extends Component {
     })
   }
 
+  startTimer = () => {
+    this.handleInterval = setInterval(this.tick, 1000);
+    let time = this.state.minutes;
+    this.secondsRemaining = time * 60 + parseInt(this.state.seconds);
+  }
+
   tick = () => {
     let min = Math.floor(this.secondsRemaining / 60);
     let sec = this.secondsRemaining - (min * 60)
@@ -99,28 +109,48 @@ class App extends Component {
     this.secondsRemaining--
   }
 
+  modifyQuestions = (e) => {
+    const questionType = e.target.className;
+    if (questionType.indexOf('all') === -1) {
+      var newStudyQuestions = this.state.allQuestions.filter(question => {
+        return questionType.indexOf(question.category) > -1;
+      })
+      var newStudyAnswers = this.state.allAnswers.filter(answer => {
+        return questionType.indexOf(answer.category) > -1;
+      })
+    }
+      this.setState({
+        questions: newStudyQuestions ? newStudyQuestions : this.state.allQuestions,
+        answers: newStudyAnswers ? newStudyAnswers : this.state.allAnswers,
+        currentQuestion: newStudyQuestions ? newStudyQuestions[0] : this.state.allQuestions[0],
+        correctAnswered: 0,
+        incorrectAnswered: 0,
+        minutes: '7',
+        seconds: '10'
+      }, this.startTimer) 
+
+    clearInterval(this.handleInterval)
+  }
 
   hideSplash = () => {
     this.setState({
       showSplash: false
     })
-
-    this.handleInterval = setInterval(this.tick, 1000);
-    let time = this.state.minutes;
-    this.secondsRemaining = time * 60 + parseInt(this.state.seconds);
+    this.startTimer();
   }
   
   renderApp() {
     const { questions, answers, currentQuestion, currentIndex, correctAnswered, incorrectAnswered, seconds, minutes } = this.state;
     return (
         <div className='app-container'>
-          <Header />
+          <Header modifyQuestions={this.modifyQuestions} />
           <GameStatus questions={questions}
+                      answers={answers}
                       correctAnswered={correctAnswered}
                       incorrectAnswered={incorrectAnswered}
                       minutes={minutes}
                       seconds={seconds}
-                      tick={this.tick}/>
+                      tick={this.tick} />
 
           <QuestionContainer questions={questions} 
                              currentQuestion={currentQuestion}
