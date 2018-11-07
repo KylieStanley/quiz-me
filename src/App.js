@@ -66,6 +66,7 @@ class App extends Component {
 
     if (currentQuestion.id === answer.id) {
       correctCount = correctAnswered + 1;
+      this.removeFromLocalStorage(currentQuestion);
     } else {
       this.saveToLocalStorage(currentQuestion);
       incorrectCount = incorrectAnswered + 1;
@@ -92,6 +93,10 @@ class App extends Component {
     this.setState({
       incorrectQuestions: incorrectQuestions   
     }, this.modifyQuestions)
+  }
+
+  removeFromLocalStorage = (currentQuestion) => {
+    localStorage.removeItem(currentQuestion.id)
   }
 
   startTimer = () => {
