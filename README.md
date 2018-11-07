@@ -7,9 +7,10 @@ A game for learning your Array and String Prototype methods. Play them separatel
 Clone this repo. 
 Run `npm install` in your terminal
 
+Run`npm start` in your terminal
+
 Open [http://localhost:3000](http://localhost:3000) to view in the browser.
 
-Run`npm start` in your terminal
 
 ### About
 
