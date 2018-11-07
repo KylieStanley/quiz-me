@@ -1,44 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Quiz Me
 
-## Available Scripts
+A game for learning your Array and String Prototype methods. Separate them into separate games of combine for a challenge. Once you win, see if you can beat your previous time! 
 
-In the project directory, you can run:
+### Set Up
 
-### `npm start`
+Clone this repo. 
+Run `npm install` in your terminal
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Run the app in the development mode:
+Open [http://localhost:3000](http://localhost:3000) to view in the browser.
+Run`npm start` in your terminal
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### About
 
-### `npm test`
+This quiz game was created as a method for studying Javascript array and string prototype terms. When beginning to learn Javascript, it is easy to forget what certain prototype methods do, whether that be the changes they make, if they are mutators, or if the values they return. My goal is that by playing this game, remembering those little differences will be second nature.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Technologies Used
 
-### `npm run build`
+- ReactJS
+- JSX
+- Sass
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Enhancements
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+ - More prototype methods as well as other Javascript categories to practice
+ - The option to set your own time to complete
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Screenshots
 
-### `npm run eject`
+![image](https://user-images.githubusercontent.com/37158924/48107754-082e6080-e1fe-11e8-9217-02f0b5ce08bb.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![image](https://user-images.githubusercontent.com/37158924/48107784-25fbc580-e1fe-11e8-8a01-6919edbf54e1.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image](https://user-images.githubusercontent.com/37158924/48107964-a15d7700-e1fe-11e8-8d86-070e8b3f1666.png)
