@@ -9,7 +9,7 @@ const GameStatus = (props) => {
     <div className="status-container">
       <ul className="statuses">
         <li>
-          <p>Questions Remaining</p>
+          <p>Remaining</p>
           <h2>{props.questions.length}</h2>
         </li>
         <li>

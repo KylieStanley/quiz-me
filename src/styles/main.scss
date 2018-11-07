@@ -61,6 +61,31 @@ li {
 }
 
 
+
+@media screen and (max-width: 840px) {
+  .score {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  .score {
+    margin: 0;
+  }
+
+  .nav {
+    flex-basis: 60%;
+    
+    & li:nth-child(n+2) {
+      display: none;
+    }
+  }
+
+  .logo {
+    flex-basis: 40%;
+  }
+}
+
 @media screen and (max-width: 400px) {
   
   h2 {
@@ -75,28 +100,12 @@ li {
     width: 72px;
   }
 
-  .nav {
-    flex-basis: 60%;
-    
-    & li:nth-child(n+2) {
-      display: none;
-    }
-  }
-
-  .logo {
-    flex-basis: 40%;
-  }
-
   .statuses {
     flex-wrap: wrap;
   }
 
   .status-container {
     height: 155px;
-  }
-
-  .score {
-    margin: 0;
   }
 
   .your-score {
