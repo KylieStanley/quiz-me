@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './styles/main.scss';
 
 
-export default class Timer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <h2>{this.props.minutes}:{this.props.seconds}</h2>
-    );
-  }
+const Timer = (props) => {
+  return (
+    <h2>{props.minutes}:{props.seconds}</h2>
+  );
 }
+
+export default Timer;

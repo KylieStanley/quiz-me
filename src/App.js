@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import Splash from './Splash.js';
 import Header from './Header.js';
@@ -59,8 +58,8 @@ class App extends Component {
 
   validateAnswer = (answer,e) => {
     const { questions, currentQuestion, currentIndex, correctAnswered, 
-            incorrectAnswered, incorrectQuestions } = this.state;
-    const remainingQuestions = questions.filter(question => question != currentQuestion);
+            incorrectAnswered } = this.state;
+    const remainingQuestions = questions.filter(question => question !== currentQuestion);
     let index = currentIndex === remainingQuestions.length ? 0 : currentIndex;
     let correctCount = correctAnswered;
     let incorrectCount = incorrectAnswered;
@@ -68,8 +67,7 @@ class App extends Component {
     if (currentQuestion.id === answer.id) {
       correctCount = correctAnswered + 1;
     } else {
-      incorrectQuestions.push(currentQuestion);
-      //set item in local storage
+      this.saveToLocalStorage(currentQuestion);
       incorrectCount = incorrectAnswered + 1;
     }
      this.setState({
@@ -77,9 +75,23 @@ class App extends Component {
       currentQuestion: remainingQuestions[index],
       currentIndex: index,
       correctAnswered: correctCount,
-      incorrectAnswered: incorrectCount,
-      incorrectQuestions: incorrectQuestions,
+      incorrectAnswered: incorrectCount
     })
+  }
+
+  saveToLocalStorage = (currentQuestion) => {
+    localStorage.setItem(`${currentQuestion.id}`, JSON.stringify(currentQuestion));
+  }
+
+  getFromLocalStorage = () => {
+    let incorrectQuestions = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      let parsed = JSON.parse(localStorage.getItem(localStorage.key(i)))
+      incorrectQuestions.push(parsed)
+    }
+    this.setState({
+      incorrectQuestions: incorrectQuestions   
+    }, this.modifyQuestions)
   }
 
   startTimer = () => {
@@ -109,21 +121,31 @@ class App extends Component {
   }
 
   modifyQuestions = (e) => {
-    const questionType = e.target.className;
-    if (questionType.indexOf('all') === -1) {
-      var newStudyQuestions = this.state.allQuestions.filter(question => {
+    let newStudyQuestions = this.state.allQuestions;
+    let newStudyAnswers = this.state.allAnswers;
+    let questionType = 'incorrect'
+    if (e) {
+      questionType = e.target.className;
+    }
+
+    if (questionType.indexOf('all') < 0 && questionType !== 'incorrect') {
+      newStudyQuestions = this.state.allQuestions.filter(question => {
         return questionType.indexOf(question.category) > -1;
       })
-      var newStudyAnswers = this.state.allAnswers.filter(answer => {
+      newStudyAnswers = this.state.allAnswers.filter(answer => {
         return questionType.indexOf(answer.category) > -1;
       })
+    } else if (questionType === 'incorrect') {
+        newStudyQuestions = this.state.incorrectQuestions;
     }
+
     this.setState({
-      questions: newStudyQuestions ? newStudyQuestions : this.state.allQuestions,
-      answers: newStudyAnswers ? newStudyAnswers : this.state.allAnswers,
-      currentQuestion: newStudyQuestions ? newStudyQuestions[0] : this.state.allQuestions[0],
+      questions: newStudyQuestions,
+      answers: newStudyAnswers,
+      currentQuestion: newStudyQuestions[0],
       correctAnswered: 0,
       incorrectAnswered: 0,
+      currentIndex: 0,
       minutes: '4',
       seconds: '00',
       tryAgainClass: questionType
@@ -144,7 +166,8 @@ class App extends Component {
             incorrectAnswered, seconds, minutes, tryAgainClass } = this.state;
     return (
         <div className='app-container'>
-          <Header modifyQuestions={this.modifyQuestions} />
+          <Header modifyQuestions={this.modifyQuestions} 
+                  getFromLocalStorage={this.getFromLocalStorage}/>
           <GameStatus questions={questions}
                       answers={answers}
                       correctAnswered={correctAnswered}
