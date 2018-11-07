@@ -28,8 +28,8 @@ This quiz game was created as a method for studying Javascript array and string 
 
 ### Screenshots
 
-![image](https://user-images.githubusercontent.com/37158924/48107754-082e6080-e1fe-11e8-9217-02f0b5ce08bb.png)
+![image](https://user-images.githubusercontent.com/37158924/48110768-441bf280-e20b-11e8-831d-b13a726916a9.png)
 
-![image](https://user-images.githubusercontent.com/37158924/48107784-25fbc580-e1fe-11e8-8a01-6919edbf54e1.png)
+![image](https://user-images.githubusercontent.com/37158924/48110830-b55ba580-e20b-11e8-9c21-f20b04d3ac45.png)
 
-![image](https://user-images.githubusercontent.com/37158924/48107964-a15d7700-e1fe-11e8-8d86-070e8b3f1666.png)
+![image](https://user-images.githubusercontent.com/37158924/48110840-c60c1b80-e20b-11e8-84ff-cfa9285ca7c9.png)
