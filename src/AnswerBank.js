@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Answer from './Answer.js';
+import PropTypes from 'prop-types';
 import './styles/main.scss';
 
 
@@ -51,4 +52,19 @@ export default class AnswerBank extends Component {
       </div>
     );
   }
+}
+
+
+AnswerBank.propTypes = {
+  minutes: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  seconds: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  validateAnswer: PropTypes.func,
+  currentQuestion: PropTypes.object,
+  answers: PropTypes.array
 }

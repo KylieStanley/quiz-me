@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles/main.scss';
 
 const Question = (props) => {
@@ -8,3 +9,8 @@ const Question = (props) => {
 }
 
 export default Question;
+
+
+Question.propTypes = {
+  currentQuestion: PropTypes.object,
+}

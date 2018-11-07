@@ -1,5 +1,6 @@
 import React from 'react';
 import Timer from './Timer.js';
+import PropTypes from 'prop-types';
 import './styles/main.scss';
 
 
@@ -34,3 +35,20 @@ const GameStatus = (props) => {
 }
 
 export default GameStatus;
+
+
+GameStatus.propTypes = {
+   minutes: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+   seconds: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+   questions: PropTypes.arrayOf(PropTypes.object),
+   answers: PropTypes.arrayOf(PropTypes.object),
+   correctAnswered: PropTypes.number,
+   incorrectAnswered: PropTypes.number,
+   tick: PropTypes.func
+}

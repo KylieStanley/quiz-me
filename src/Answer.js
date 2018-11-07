@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './styles/main.scss';
 
 
@@ -46,4 +47,19 @@ export default class Answer extends Component {
     }
     return (button);
   }
+}
+
+          
+Answer.propTypes = {
+  minutes: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  seconds: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  validateAnswer: PropTypes.func,
+  currentQuestion: PropTypes.object,
+  answer: PropTypes.object
 }

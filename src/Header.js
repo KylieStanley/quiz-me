@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles/main.scss';
 
 const Header = (props) => {
@@ -19,3 +20,9 @@ const Header = (props) => {
 }
 
 export default Header;
+
+
+Header.propTypes = {
+  modifyQuestions: PropTypes.func,
+  getFromLocalStorage: PropTypes.func
+}

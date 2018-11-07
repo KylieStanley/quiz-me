@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles/main.scss';
+import PropTypes from 'prop-types';
 import Question from './Question.js'
 
 
@@ -65,4 +66,25 @@ export default class QuestionContainer extends Component {
       );  
     }  
   }
+}
+
+
+QuestionContainer.propTypes = {
+  minutes: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  seconds: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  validateAnswer: PropTypes.func,
+  currentQuestion: PropTypes.object,
+  answers: PropTypes.array,
+  questions: PropTypes.array, 
+  correctAnswered: PropTypes.number,
+  modifyQuestions: PropTypes.func,
+  currentIndex: PropTypes.number,
+  setCurrent: PropTypes.func,
+  tryAgainClass: PropTypes.string
 }
