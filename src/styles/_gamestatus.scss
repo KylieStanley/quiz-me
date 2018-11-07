@@ -1,9 +1,5 @@
 @import 'variables';
 
-.status-container {
-  height: 105px;
-}
-
 .score {
   margin-left: auto;
 }
@@ -11,9 +7,10 @@
 .statuses {
   align-items: flex-end;
   justify-content: center;
+  flex-wrap: wrap;
   height: 100%;
+  margin: 26px auto 0;
   width: 75%;
-  margin: 0 auto;
 
   li {
     text-align: center;

@@ -20,6 +20,7 @@ h1 {
   font-size: 6.3em;
   font-family: $title-font;
   letter-spacing: 3px;
+  text-align: center;
 }
 
 h2 {
@@ -30,10 +31,11 @@ h2 {
 h3 {
   font-family: $main-condensed;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 h4 {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 p {
@@ -56,4 +58,63 @@ ul {
 
 li {
   color: #242727;
+}
+
+
+@media screen and (max-width: 400px) {
+  
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    padding: 0 10px;
+  }
+
+  p {
+    width: 72px;
+  }
+
+  .nav {
+    flex-basis: 60%;
+    
+    & li:nth-child(n+2) {
+      display: none;
+    }
+  }
+
+  .logo {
+    flex-basis: 40%;
+  }
+
+  .statuses {
+    flex-wrap: wrap;
+  }
+
+  .status-container {
+    height: 155px;
+  }
+
+  .score {
+    margin: 0;
+  }
+
+  .your-score {
+    font-size: 1.5em;
+  }
+  .question-container {
+    width: 92%;
+  }
+  .current-question {
+    font-size: .9em;
+  }
+
+  .answer-wrapper {
+    width: 92%;
+  }
+
+  .answer-container {
+    padding: 18px 5px;
+  }
+
 }
