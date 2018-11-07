@@ -1,6 +1,6 @@
 # Quiz Me
 
-A game for learning your Array and String Prototype methods. Separate them into separate games of combine for a challenge. Once you win, see if you can beat your previous time! 
+A game for learning your Array and String Prototype methods. Play them separately or combine for a challenge. Once you win, see if you can beat your previous time! 
 
 ### Set Up
 
