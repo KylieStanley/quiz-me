@@ -2,8 +2,6 @@
 
 .status-container {
   height: 105px;
-  margin: 0 auto;
-  width: 75%;
 }
 
 .score {
@@ -12,7 +10,10 @@
 
 .statuses {
   align-items: flex-end;
+  justify-content: center;
   height: 100%;
+  width: 75%;
+  margin: 0 auto;
 
   li {
     text-align: center;

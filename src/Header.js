@@ -10,7 +10,7 @@ const Header = (props) => {
           <li className="navitem Array" onClick={props.modifyQuestions}>Arrays</li>
           <li className="navitem String" onClick={props.modifyQuestions}>Strings</li>
           <li className="navitem all" onClick={props.modifyQuestions}>All</li>
-          <li className="navitem incorrect" onClick={props.getFromLocalStorage}>Your Incorrectly Answered</li>
+          <li className="navitem incorrect" onClick={props.getFromLocalStorage}>Incorrectly Answered</li>
         </ul>
         <h3 className="logo">quiz me</h3>
       </div>

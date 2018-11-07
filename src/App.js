@@ -128,15 +128,21 @@ class App extends Component {
       questionType = e.target.className;
     }
 
-    if (questionType.indexOf('all') < 0 && questionType !== 'incorrect') {
+    if (questionType.indexOf('all') < 0 && questionType.indexOf('incorrect') < 0) {
       newStudyQuestions = this.state.allQuestions.filter(question => {
         return questionType.indexOf(question.category) > -1;
       })
       newStudyAnswers = this.state.allAnswers.filter(answer => {
         return questionType.indexOf(answer.category) > -1;
       })
-    } else if (questionType === 'incorrect') {
+    } else if (questionType.indexOf('incorrect') >= 0) {
         newStudyQuestions = this.state.incorrectQuestions;
+        newStudyAnswers = this.state.allAnswers.filter(answer => {
+          let match = newStudyQuestions.find(question => {
+            return answer.id === question.id;
+          })
+          return match;
+        })
     }
 
     this.setState({

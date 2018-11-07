@@ -29,7 +29,7 @@ import './styles/main.scss';
                seconds={props.seconds} />
       </li>
     </ul>
-    </div>
+    // </div>
   );
 }
 
