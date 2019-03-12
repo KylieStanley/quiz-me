@@ -22,7 +22,8 @@ class App extends Component {
       currentIndex: 0,
       incorrectQuestions: [],
       minutes: '4',
-      seconds: '00'
+      seconds: '00',
+      tryAgainClass: 'all'
     }
   }
 
@@ -128,7 +129,7 @@ class App extends Component {
   modifyQuestions = (e) => {
     let newStudyQuestions = this.state.allQuestions;
     let newStudyAnswers = this.state.allAnswers;
-    let questionType = 'incorrect'
+    let questionType = 'all'
     if (e) {
       questionType = e.target.className;
     }
