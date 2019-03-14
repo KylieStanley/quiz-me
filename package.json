@@ -8,7 +8,9 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-scripts": "2.1.1"
+    "react-redux": "^6.0.1",
+    "react-scripts": "2.1.1",
+    "redux": "^4.0.1"
   },
   "scripts": {
     "deploy": "npm run build&&gh-pages -d build",
