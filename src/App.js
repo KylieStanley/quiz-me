@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.scss';
 import Splash from './Splash.js';
 import Header from './Header.js';
 import QuestionContainer from './QuestionContainer.js';
 import AnswerBank from './AnswerBank.js';
 import GameStatus from './GameStatus.js';
+import { fetchQuestions } from './thunks/fetchQuestions';
+import { updateQuestions } from './actions';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       showSplash: true,
-      allQuestions: [],
-      questions: [],
       allAnswers: [],
       answers: [],
       currentQuestion: {},
@@ -26,17 +27,16 @@ class App extends Component {
     };
   }
 
-  componentDidMount = () => {
-    fetch('https://memoize-datasets.herokuapp.com/api/v1/questions')
-      .then(data => data.json())
-      .then(data => {
-        this.setState({
-          allQuestions: data.questions,
-          questions: data.questions,
-          currentQuestion: data.questions[0]
-        });
-      })
-      .catch(err => console.log(err));
+  async componentDidMount() {
+    await this.props.fetchQuestions(
+      'https://memoize-datasets.herokuapp.com/api/v1/questions'
+    );
+
+    this.props.updateQuestions(this.props.allQuestions);
+
+    this.setState({
+      currentQuestion: this.props.questions[0]
+    });
 
     fetch('https://memoize-datasets.herokuapp.com/api/v1/answers')
       .then(data => data.json())
@@ -47,7 +47,7 @@ class App extends Component {
         });
       })
       .catch(err => console.log(err));
-  };
+  }
 
   setCurrent = (newQuestion, newIndex) => {
     this.setState({
@@ -57,8 +57,8 @@ class App extends Component {
   };
 
   validateAnswer = (answer, e) => {
+    const { questions } = this.props;
     const {
-      questions,
       currentQuestion,
       currentIndex,
       correctAnswered,
@@ -78,8 +78,10 @@ class App extends Component {
       this.saveToLocalStorage(currentQuestion);
       incorrectCount = incorrectAnswered + 1;
     }
+
+    this.props.updateQuestions(remainingQuestions);
+
     this.setState({
-      questions: remainingQuestions,
       currentQuestion: remainingQuestions[index],
       currentIndex: index,
       correctAnswered: correctCount,
@@ -132,16 +134,16 @@ class App extends Component {
         seconds: '0' + this.state.seconds
       });
     }
-    if ((min === 0) & (sec === 0) || !this.state.questions.length) {
+    if ((min === 0) & (sec === 0) || !this.props.questions.length) {
       clearInterval(this.handleInterval);
     }
     this.secondsRemaining--;
   };
 
   modifyQuestions = e => {
-    let newStudyQuestions = this.state.allQuestions;
+    let newStudyQuestions = this.props.allQuestions;
     let newStudyAnswers = this.state.allAnswers;
-    let questionType = 'all';
+    let questionType = 'incorrect';
     if (e) {
       questionType = e.target.className;
     }
@@ -150,7 +152,7 @@ class App extends Component {
       questionType.indexOf('all') < 0 &&
       questionType.indexOf('incorrect') < 0
     ) {
-      newStudyQuestions = this.state.allQuestions.filter(question => {
+      newStudyQuestions = this.props.allQuestions.filter(question => {
         return questionType.indexOf(question.category) > -1;
       });
       newStudyAnswers = this.state.allAnswers.filter(answer => {
@@ -166,9 +168,9 @@ class App extends Component {
       });
     }
 
+    this.props.updateQuestions(newStudyQuestions);
     this.setState(
       {
-        questions: newStudyQuestions,
         answers: newStudyAnswers,
         currentQuestion: newStudyQuestions[0],
         correctAnswered: 0,
@@ -192,8 +194,8 @@ class App extends Component {
   };
 
   renderApp() {
+    const { questions } = this.props;
     const {
-      questions,
       answers,
       currentQuestion,
       currentIndex,
@@ -250,4 +252,17 @@ class App extends Component {
   }
 }
 
-export default App;
+export const mapStateToProps = state => ({
+  allQuestions: state.allQuestions,
+  questions: state.questions
+});
+
+export const mapDispatchToProps = dispatch => ({
+  fetchQuestions: url => dispatch(fetchQuestions(url)),
+  updateQuestions: questions => dispatch(updateQuestions(questions))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
