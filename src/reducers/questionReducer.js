@@ -16,9 +16,18 @@ export const hasErrored = (state = '', action) => {
   }
 };
 
-export const questions = (state = [], action) => {
+export const allQuestions = (state = [], action) => {
   switch (action.type) {
     case 'FETCH_QUESTION_SUCCESS':
+      return action.allQuestions;
+    default:
+      return state;
+  }
+};
+
+export const questions = (state = [], action) => {
+  switch (action.type) {
+    case 'UPDATE_QUESTIONS':
       return action.questions;
     default:
       return state;
