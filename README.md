@@ -1,20 +1,20 @@
 # Quiz Me
 
-A game for learning your Array and String Prototype methods. Play them separately or combine for a challenge. Once you win, see if you can beat your previous time! 
-
-### Set Up
-
-Clone this repo. 
-Run `npm install` in your terminal
-
-Run`npm start` in your terminal
-
-Open [http://localhost:3000](http://localhost:3000) to view in the browser.
-
-
 ### About
 
 This quiz game was created as a method for studying Javascript array and string prototype terms. When beginning to learn Javascript, it is easy to forget what certain prototype methods do, whether that be the changes they make, if they are mutators, or if the values they return. My goal is that by playing this game, remembering those little differences will be second nature.
+
+### Set Up
+
+Clone this repo
+
+`cd quiz-me`
+
+`npm install`
+
+`npm start`
+
+Open [http://localhost:3000](http://localhost:3000) to view in the browser.
 
 ### Technologies Used
 
