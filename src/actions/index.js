@@ -7,3 +7,8 @@ export const hasErrored = message => ({
   type: 'HAS_ERRORED',
   message
 });
+
+export const fetchQuestionSuccess = questions => ({
+  type: 'FETCH_QUESTION_SUCCESS',
+  questions
+});
