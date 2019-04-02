@@ -4,10 +4,13 @@ A game for learning your Array and String Prototype methods. Play them separatel
 
 ### Set Up
 
-Clone this repo. 
-Run `npm install` in your terminal
+Clone this repo
 
-Run`npm start` in your terminal
+`cd quiz-me`
+
+`npm install`
+
+`npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view in the browser.
 
