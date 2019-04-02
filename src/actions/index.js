@@ -8,7 +8,12 @@ export const hasErrored = message => ({
   message
 });
 
-export const fetchQuestionSuccess = questions => ({
+export const fetchQuestionSuccess = allQuestions => ({
   type: 'FETCH_QUESTION_SUCCESS',
+  allQuestions
+});
+
+export const updateQuestions = questions => ({
+  type: 'UPDATE_QUESTIONS',
   questions
 });
