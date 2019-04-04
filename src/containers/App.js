@@ -15,7 +15,6 @@ class App extends Component {
     super();
     this.state = {
       showSplash: true,
-      allAnswers: [],
       answers: [],
       currentQuestion: {},
       correctAnswered: 0,
@@ -137,7 +136,7 @@ class App extends Component {
 
   modifyQuestions = e => {
     let newStudyQuestions = this.props.allQuestions;
-    let newStudyAnswers = this.state.allAnswers;
+    let newStudyAnswers = this.props.allAnswers;
     let questionType = 'incorrect';
     if (e) {
       questionType = e.target.className;
@@ -150,12 +149,12 @@ class App extends Component {
       newStudyQuestions = this.props.allQuestions.filter(question => {
         return questionType.indexOf(question.category) > -1;
       });
-      newStudyAnswers = this.state.allAnswers.filter(answer => {
+      newStudyAnswers = this.props.allAnswers.filter(answer => {
         return questionType.indexOf(answer.category) > -1;
       });
     } else if (questionType.indexOf('incorrect') >= 0) {
       newStudyQuestions = this.state.incorrectQuestions;
-      newStudyAnswers = this.state.allAnswers.filter(answer => {
+      newStudyAnswers = this.props.allAnswers.filter(answer => {
         let match = newStudyQuestions.find(question => {
           return answer.id === question.id;
         });
@@ -164,9 +163,9 @@ class App extends Component {
     }
 
     this.props.updateQuestions(newStudyQuestions);
+    this.props.updateAnswers(newStudyAnswers);
     this.setState(
       {
-        answers: newStudyAnswers,
         currentQuestion: newStudyQuestions[0],
         correctAnswered: 0,
         incorrectAnswered: 0,
