@@ -94,7 +94,8 @@ class QuestionContainer extends Component {
 }
 
 export const mapStateToProps = state => ({
-  questions: state.questions
+  questions: state.questions,
+  answers: state.answers
 });
 
 export default connect(mapStateToProps)(QuestionContainer);
