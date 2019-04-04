@@ -212,16 +212,13 @@ class App extends Component {
           getFromLocalStorage={this.getFromLocalStorage}
         />
         <GameStatus
-          questions={questions}
           answers={answers}
           correctAnswered={correctAnswered}
           incorrectAnswered={incorrectAnswered}
           minutes={minutes}
           seconds={seconds}
-          tick={this.tick}
         />
         <QuestionContainer
-          questions={questions}
           answers={answers}
           currentQuestion={currentQuestion}
           correctAnswered={correctAnswered}
