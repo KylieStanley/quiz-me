@@ -47,6 +47,5 @@ GameStatus.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object),
   answers: PropTypes.arrayOf(PropTypes.object),
   correctAnswered: PropTypes.number,
-  incorrectAnswered: PropTypes.number,
-  tick: PropTypes.func
+  incorrectAnswered: PropTypes.number
 };
