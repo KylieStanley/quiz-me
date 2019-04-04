@@ -1,10 +1,10 @@
 import React from 'react';
 import Timer from './Timer.js';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import './styles/main.scss';
 
-
-const GameStatus = (props) => {
+const GameStatus = props => {
   return (
     <div className="status-container">
       <ul className="statuses">
@@ -22,33 +22,31 @@ const GameStatus = (props) => {
         </li>
         <li className="score">
           <p>Score</p>
-          <h2>{props.correctAnswered}/{props.answers.length}</h2>
+          <h2>
+            {props.correctAnswered}/{props.answers.length}
+          </h2>
         </li>
         <li>
           <p>Timer</p>
-          <Timer minutes={props.minutes}
-                 seconds={props.seconds} />
+          <Timer minutes={props.minutes} seconds={props.seconds} />
         </li>
       </ul>
     </div>
   );
-}
+};
 
-export default GameStatus;
+export const mapStateToProps = state => ({
+  questions: state.questions
+});
 
+export default connect(mapStateToProps)(GameStatus);
 
 GameStatus.propTypes = {
-   minutes: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-   seconds: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-   questions: PropTypes.arrayOf(PropTypes.object),
-   answers: PropTypes.arrayOf(PropTypes.object),
-   correctAnswered: PropTypes.number,
-   incorrectAnswered: PropTypes.number,
-   tick: PropTypes.func
-}
+  minutes: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  seconds: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  questions: PropTypes.arrayOf(PropTypes.object),
+  answers: PropTypes.arrayOf(PropTypes.object),
+  correctAnswered: PropTypes.number,
+  incorrectAnswered: PropTypes.number,
+  tick: PropTypes.func
+};
