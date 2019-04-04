@@ -7,7 +7,8 @@ import QuestionContainer from './QuestionContainer.js';
 import AnswerBank from './AnswerBank.js';
 import GameStatus from './GameStatus.js';
 import { fetchQuestions } from './thunks/fetchQuestions';
-import { updateQuestions } from './actions';
+import { fetchAnswers } from './thunks/fetchAnswers';
+import { updateQuestions, updateAnswers } from './actions';
 
 class App extends Component {
   constructor() {
@@ -251,12 +252,16 @@ class App extends Component {
 
 export const mapStateToProps = state => ({
   allQuestions: state.allQuestions,
-  questions: state.questions
+  questions: state.questions,
+  allAnswers: state.allAnswers,
+  answers: state.answers
 });
 
 export const mapDispatchToProps = dispatch => ({
   fetchQuestions: url => dispatch(fetchQuestions(url)),
-  updateQuestions: questions => dispatch(updateQuestions(questions))
+  fetchAnswers: url => dispatch(fetchAnswers(url)),
+  updateQuestions: questions => dispatch(updateQuestions(questions)),
+  updateAnswers: answers => dispatch(updateAnswers(answers))
 });
 
 export default connect(
