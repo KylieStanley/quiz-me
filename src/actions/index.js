@@ -17,3 +17,13 @@ export const updateQuestions = questions => ({
   type: 'UPDATE_QUESTIONS',
   questions
 });
+
+export const fetchAnswerSuccess = allAnswers => ({
+  type: 'FETCH_ANSWER_SUCCESS',
+  allAnswers
+});
+
+export const updateAnswers = answers => ({
+  type: 'UPDATE_ANSWERS',
+  answers
+});
